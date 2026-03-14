@@ -1,0 +1,26 @@
+{
+    "name": "Pal Launcher Dev Env",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash"
+            },
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "christian-kohler.path-intellisense",
+                "dsznajder.es7-react-js-snippets"
+            ]
+        }
+    },
+    "remoteUser": "root",
+    "postCreateCommand": "npm install && echo \"alias start='npx electron . --no-sandbox --disable-dev-shm-usage --disable-gpu'\" >> ~/.bashrc",
+    "mounts": ["source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind"],
+    "containerEnv": {
+        "DISPLAY": "${localEnv:DISPLAY}"
+    },
+    "runArgs": ["--shm-size=2gb"]
+}
